@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require("fs")
+, _p
 ;
 
 //this is a wrapper for a data loader.  
@@ -12,7 +13,9 @@ var fs = require("fs")
 
 function DataLoader () {}
 
-DataLoader.getStudent = function (studentId, cb) {
+_p = DataLoader.prototype;
+
+_p.getStudent = function (studentId, cb) {
   var filePath = "./students/"+studentId+".json";
   
   fs.readFile(filePath, function (err, data) {
@@ -27,10 +30,14 @@ DataLoader.getStudent = function (studentId, cb) {
   });
 };
 
-DataLoader.getStudentSync = function (studentId) {
+_p.getStudentSync = function (studentId) {
   var filePath = "./students/"+studentId+".json";
   
   return JSON.parse(fs.readFileSync(filePath));
 };
+
+_p.getCourseSync = function () {};
+
+_p.saveCourseSync = function () {};
 
 module.exports = DataLoader;
