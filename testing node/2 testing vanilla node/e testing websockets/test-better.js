@@ -11,20 +11,24 @@ var sinon = require("sinon")
 chai.should();
 
 describe("test the appropriate functions are called when a message is sent", function () {
-  
+
+  beforeEach(function() {
+    // when spying on a function that exists on an object, you have to spy like this
+    sinon.spy(server, 'handleWebSocketMessage');
+    sinon.spy(client, 'handleMessage');
+  });
+  afterEach(function() {
+    server.handleWebSocketMessage.restore();
+    client.handleMessage.restore();
+  })  
   it("sends a message, sees that the message handlers on both server and client were called", function (done) {
-    console.log(server);
-    var serverSpy = sinon.spy(server.handleWebSocketMessage)
-      , clientSpy = sinon.spy(client.handleMessage)
-      ;
-      
+            
     //wait for the ws to connect before sending a message
     setTimeout(function () {
       client.ws.send("message");
       setTimeout(function () {
-        console.log(serverSpy);
-        sinon.assert.calledOnce(serverSpy);
-        sinon.assert.calledOnce(clientSpy);
+        sinon.assert.calledOnce(server.handleWebSocketMessage);
+        sinon.assert.calledOnce(client.handleMessage);
         done();
       }, 500);
     }, 1000);

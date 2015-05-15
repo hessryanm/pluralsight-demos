@@ -9,7 +9,7 @@ function WebSocketFunctions () {}
 WebSocketFunctions.ws = ws;
 
 WebSocketFunctions.handleMessage = function (ws, message) {
-  console.log(message);
+  console.log('message sent:', message);
 };
 
 WebSocketFunctions.handleWSOpen = function (ws) {
