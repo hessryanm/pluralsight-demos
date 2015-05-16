@@ -1,0 +1,88 @@
+'use strict';
+
+//each block of code overrides the previous ones, so if you want to show each one in series, just uncomment each subsequent block of code.
+  
+//nodeunit is pretty similar to mocha, just the syntax is different
+//one big difference is it encourages you to define things like the number of asserts and end of the test explicitly rather than implicitly
+//the goal of this is to help avoid false passes on tests.
+
+//test.expect(num) is the number of asserts for the test to expect before test.done() is called.
+//test.done() is like done() in mocha - signifies the end of the test.
+
+//the test parameter in each function extends node's assert module, so you don't have to use chai (although I probably still would)
+
+//test as single tests
+exports.test1 = function (test) {
+  test.expect(0);
+  test.done();
+};
+//or in groups
+exports.group1 = {
+  test2: function (test) {
+    test.expect(0);
+    test.done();
+  }
+, test3: function (test) {
+    test.expect(0);
+    test.done();
+  }
+};
+
+// //there are also setUp and tearDown functions, which are similar to beforeEach() and afterEach() in mocha
+// module.exports = {
+//   setUp: function (callback) {
+//     console.log("global setUp");
+//     callback();
+//   }
+// , tearDown: function (callback) {
+//     console.log("global teardown");
+//     callback();
+//   }
+// , test1: function (test) {
+//     test.expect(0);
+//     console.log("test 1");
+//     test.done();
+//   }
+// , group1: {
+//     setUp: function (callback) {
+//       console.log("group 1 setUp");
+//       callback();
+//     }
+//   , tearDown: function (callback) {
+//       console.log("group 1 teardown");
+//       callback();
+//     }
+//   , test2: function (test) {
+//       test.expect(0);
+//       console.log("test 2");
+//       test.done();
+//     }
+//   , test3: function (test) {
+//       test.expect(0);
+//       console.log("test 3");
+//       test.done();
+//     }
+//   }
+// };
+
+// var Arithmetic
+//   ;
+
+// module.exports = {
+//   setUp: function (callback) {
+//     Arithmetic = require("./index").create();
+//     callback();
+//   }
+// , testArithmetic: {
+//     testAdd: function (test) {
+//       test.expect(1);
+//       test.equal(Arithmetic.add(1,2), 3);
+//       test.done();
+//     }
+//   , testSubtract: function (test) {
+//       test.expect(1);
+//       test.equal(Arithmetic.subtract(4,2), 2);
+//       test.done();
+//     }
+//   }
+// };
