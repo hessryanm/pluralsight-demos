@@ -1,0 +1,3 @@
+Now that we have rearchitected our routes file to use injected dependencies, we can see how we can test just the routing without testing all the rest of the functionality.
+
+I also re-architected the controllers/users to be more testable - users-restful-restless.  This rearchitect required no changes in how it was used, but makes it far easier to test.
